@@ -14,12 +14,16 @@ class SelectImage{
     /**
      * Elemente selektieren
      */
+        this.domBody = document.querySelector('body');
         this.domDynamicText = document.querySelector('#dynamicText');
         this.domMyText = document.querySelector('#myText');
         this.domPicture = document.querySelector('#pictureText > picture');
         this.domSelectedImg = document.querySelector('#pictureText > #selectedImg');
         this.domExistImg = document.querySelector('#pictureText > #selectedImg > img');
-        this.domButton = document.querySelector('#pictureText > button');
+        this.domBtnSave = document.querySelector('#btnSave');
+        this.domBtnFb = document.querySelector('#btnFacebook');
+        this.domBtnTwitter = document.querySelector('#btnTwitter');
+
 
     /**
      * Funktionen aufrufen
@@ -36,7 +40,7 @@ class SelectImage{
         this._write(); 
 
         // Fängt Klick auf Save Button ab
-        this._shareButton(this.domButton);
+        this._eventListener();
 
         // Zu Beginn, das erste Bild in <picture> einfügen
         this._addImg(this.arrImgages[0]);
@@ -172,22 +176,102 @@ class SelectImage{
         }
 
     /**
-     * Bild speichern
+     * Bild speichern / teilen
      */
-        _shareButton(domElement){
-            domElement.addEventListener('click', (e) => { 
-                console.log('save');
-                this._saveImg();
-            });
+        // _shareButton(domElement){
+        //     domElement.addEventListener('click', (e) => { 
+        //         console.log('save');
+        //         // this._saveImg();
+        //     });
+        // }
+
+
+        _eventListener(){
+            this.domBody.addEventListener('click', (event) => {
+
+                if (event.target === this.domBtnSave) {
+                    console.log('domBtnSave');
+                    this._saveImg();
+                }
+
+                if (event.target === this.domBtnFb) {
+                    console.log('domBtnFb');
+                }
+
+                if (event.target === this.domBtnTwitter) {
+                    console.log('domBtnTwitter');
+                }
+            });        
         }
 
         _saveImg(){
-            this.html2canvas(this.domSelectedImg).then(canvas => {
-                let link = document.createElement('a');
-                link.href = canvas.toDataURL('image/jpeg');
-                link.download = 'myimg.jpeg';
-                link.click();                 
+            console.log(this.domSelectedImg);
+            window.scrollTo(0, 0);
+
+            let scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+            let calcWidth = window.innerWidth - scrollbarWidth;
+            let getCanvas = '';
+            this.html2canvas(this.domSelectedImg,
+                {
+                // scale: window.devicePixelRatio,
+                // windowWidth: this.domBody.scrollWidth,
+                // windowHeight: this.domBody.scrollHeight,
+                // ignoreElements: (element) => hasClass(element, 'mapboxgl-ctrl'),
+                // ignoreElements: function( element ) {
+                //     // if( element.id != 'selectedImg' ) {
+                //     //     console.log('element: ', element);
+                //     //     return true;
+                //     // }
+                    
+                //     // console.log('element: ', element.tagName);
+                //     if( element.tagName == 'PICTURE' ) {
+                //         console.log('element: ', element);
+                //         // document.querySelector('picture').remove();
+                //         // return true;
+                //     }
+
+                //     if( element.tagName == 'INPUT' ) {
+                //         console.log('element: ', element);
+                //         // document.querySelector('input').remove();
+                //         // return true;
+                //     }
+
+                //     if( element.tagName == 'BUTTON' ) {
+                //         console.log('element: ', element.tagName);
+                //         // document.querySelector('input').remove();
+                //         // return true;
+                //     }
+                // },
+                // width: 300,
+                // height: 300,
+                // x: 0,
+                // y: 0,
+                // windowWidth: window.innerWidth,
+                // windowHeight: window.innerHeight,
+                // x: window.scrollX,
+                // y: window.scrollY,
+                // width: window.innerWidth,
+                // height: window.innerHeight,
+                // removeContainer: true
+                // scrollX: -window.scrollX,
+                // scrollY: -window.scrollY
+                // scrollX: -window.pageXOffset,
+                // scrollY: 0
+                // scrollY: -window.pageYOffset
+                windowWidth: calcWidth
+                }
+                ).then(canvas => {
+                // let link = document.createElement('a');
+                // link.href = canvas.toDataURL('image/jpeg');
+                // link.download = 'myimg.jpeg';
+                // link.click();              
+                getCanvas = canvas;
+                console.log('getCanvas: ', getCanvas);
+                document.body.appendChild(canvas);
+
             });
+
          }
 
 

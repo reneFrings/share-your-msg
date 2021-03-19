@@ -402,3 +402,11 @@
         #pictureText > picture::-webkit-scrollbar-track {
             background: rgb(var(--third-color));
         }
+
+        canvas{
+            background-color: aqua;
+            border: solid 1px aqua;
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }

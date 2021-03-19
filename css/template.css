@@ -404,8 +404,8 @@
         }
 
         canvas{
-            background-color: aqua;
-            border: solid 1px aqua;
+            /* background-color: aqua;
+            border: solid 1px aqua; */
             margin: 0px;
             padding: 0px;
             box-sizing: border-box;

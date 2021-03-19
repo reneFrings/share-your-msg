@@ -21,9 +21,15 @@ class SelectImage{
         this.domSelectedImg = document.querySelector('#pictureText > #selectedImg');
         this.domExistImg = document.querySelector('#pictureText > #selectedImg > img');
         this.domBtnSave = document.querySelector('#btnSave');
-        this.domBtnFb = document.querySelector('#btnFacebook');
-        this.domBtnTwitter = document.querySelector('#btnTwitter');
 
+        /**
+         * Wird später evtl. benötigt
+         * Wenn man Bilder direkt ohne URL teilen kann
+         */
+        /*
+            this.domBtnFb = document.querySelector('#btnFacebook');
+            this.domBtnTwitter = document.querySelector('#btnTwitter');
+        */
 
     /**
      * Funktionen aufrufen
@@ -175,104 +181,83 @@ class SelectImage{
 
         }
 
-    /**
-     * Bild speichern / teilen
-     */
-        // _shareButton(domElement){
-        //     domElement.addEventListener('click', (e) => { 
-        //         console.log('save');
-        //         // this._saveImg();
-        //     });
-        // }
 
+    /**
+     * Klicks im Body abfangen
+     */
 
         _eventListener(){
             this.domBody.addEventListener('click', (event) => {
 
                 if (event.target === this.domBtnSave) {
                     console.log('domBtnSave');
-                    this._saveImg();
+                    this._saveImg('save');
                 }
 
+            /**
+             * Wird später evtl. benötigt
+             * Wenn man Bilder direkt ohne URL teilen kann
+             */
+                /*
                 if (event.target === this.domBtnFb) {
                     console.log('domBtnFb');
+                    this._saveImg('facebook');
                 }
 
                 if (event.target === this.domBtnTwitter) {
                     console.log('domBtnTwitter');
                 }
+            */
             });        
         }
 
-        _saveImg(){
-            console.log(this.domSelectedImg);
-            window.scrollTo(0, 0);
+        _saveImg(how){
+            
+            /**
+             * Notwendig, wenn der Screenshot versetzt ist und links oder rechts eine Lücke ist 
+             */ 
+                window.scrollTo(0, 0);
 
-            let scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-
-            let calcWidth = window.innerWidth - scrollbarWidth;
-            let getCanvas = '';
+                // Scrollbarbreite berechnen
+                let scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+                
+                // Innere Fensterbreite - Scrollbarbreite
+                let calcWidth = window.innerWidth - scrollbarWidth;
+            
             this.html2canvas(this.domSelectedImg,
                 {
-                // scale: window.devicePixelRatio,
-                // windowWidth: this.domBody.scrollWidth,
-                // windowHeight: this.domBody.scrollHeight,
-                // ignoreElements: (element) => hasClass(element, 'mapboxgl-ctrl'),
-                // ignoreElements: function( element ) {
-                //     // if( element.id != 'selectedImg' ) {
-                //     //     console.log('element: ', element);
-                //     //     return true;
-                //     // }
-                    
-                //     // console.log('element: ', element.tagName);
-                //     if( element.tagName == 'PICTURE' ) {
-                //         console.log('element: ', element);
-                //         // document.querySelector('picture').remove();
-                //         // return true;
-                //     }
-
-                //     if( element.tagName == 'INPUT' ) {
-                //         console.log('element: ', element);
-                //         // document.querySelector('input').remove();
-                //         // return true;
-                //     }
-
-                //     if( element.tagName == 'BUTTON' ) {
-                //         console.log('element: ', element.tagName);
-                //         // document.querySelector('input').remove();
-                //         // return true;
-                //     }
-                // },
-                // width: 300,
-                // height: 300,
-                // x: 0,
-                // y: 0,
-                // windowWidth: window.innerWidth,
-                // windowHeight: window.innerHeight,
-                // x: window.scrollX,
-                // y: window.scrollY,
-                // width: window.innerWidth,
-                // height: window.innerHeight,
-                // removeContainer: true
-                // scrollX: -window.scrollX,
-                // scrollY: -window.scrollY
-                // scrollX: -window.pageXOffset,
-                // scrollY: 0
-                // scrollY: -window.pageYOffset
-                windowWidth: calcWidth
+                // Konfiguration
+                windowWidth: calcWidth,
+                width: 300,
+                height: 300
                 }
                 ).then(canvas => {
-                // let link = document.createElement('a');
-                // link.href = canvas.toDataURL('image/jpeg');
-                // link.download = 'myimg.jpeg';
-                // link.click();              
-                getCanvas = canvas;
-                console.log('getCanvas: ', getCanvas);
-                document.body.appendChild(canvas);
+                    // document.body.appendChild(canvas);
 
-            });
+                /** Bild speichern */
+                    if (how === 'save'){
+                        let link = document.createElement('a');
+                        link.href = canvas.toDataURL('image/jpeg');
+                        link.download = 'myimg.jpeg';
+                        link.click();              
+                    }
+
+                /**
+                 * Wird später evtl. benötigt
+                 * Wenn man Bilder direkt ohne URL teilen kann
+                 */
+                    /*
+                    if (how === 'facebook'){
+                        let link = canvas.toDataURL('image/jpeg');
+                        console.log('facebook: ', link );
+                    }
+                    */
+
+
+                });
 
          }
+
 
 
     /**

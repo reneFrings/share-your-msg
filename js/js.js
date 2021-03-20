@@ -21,6 +21,14 @@ class SelectImage{
         this.domSelectedImg = document.querySelector('#pictureText > #selectedImg');
         this.domExistImg = document.querySelector('#pictureText > #selectedImg > img');
         this.domBtnSave = document.querySelector('#btnSave');
+        this.domFonts = document.querySelector('#fonts');
+        this.domTextalign = document.querySelector('#textAlign');
+        this.domTextFormat = document.querySelector('#textFormat');
+
+        this.domTextFormatBold = document.querySelector('#textFormat > input[name="bold"]');
+        this.domTextFormatItalic = document.querySelector('#textFormat > input[name="italic"]');
+        this.domTextFormatUnderline = document.querySelector('#textFormat > input[name="underline"]');
+        this.domTextFormatColor = document.querySelector('#fontColor');
 
         /**
          * Wird später evtl. benötigt
@@ -187,6 +195,10 @@ class SelectImage{
      */
 
         _eventListener(){
+
+        /**
+         * Klicks im Body
+         */
             this.domBody.addEventListener('click', (event) => {
 
                 if (event.target === this.domBtnSave) {
@@ -209,6 +221,74 @@ class SelectImage{
                 }
             */
             });        
+
+        /**
+         * Font Select
+         */
+            this.domFonts.addEventListener('change', (event) => {
+                console.log('Font:', event.target.value);
+                this.domMyText.style.fontFamily = event.target.value;
+                this.domDynamicText.style.fontFamily = event.target.value;
+            });
+
+        /**
+         * Text Align
+         */
+            this.domTextalign.addEventListener('click', (event) => {
+                console.log('textAlign:', event.target.value);
+                this.domMyText.style.textAlign = event.target.value;
+                this.domDynamicText.style.textAlign = event.target.value;
+            });
+
+        /**
+         * Text Format Bold
+         */
+            this.domTextFormatBold.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                    this.domMyText.style.fontWeight = event.target.value;
+                    this.domDynamicText.style.fontWeight = event.target.value;
+                  } else {
+                    this.domMyText.style.fontWeight = 'normal';
+                    this.domDynamicText.style.fontWeight = 'normal';
+                }
+            });
+
+        /**
+         * Text Format Italic
+         */
+            this.domTextFormatItalic.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                    this.domMyText.style.fontStyle = event.target.value;
+                    this.domDynamicText.style.fontStyle = event.target.value;
+                } else {
+                    this.domMyText.style.fontStyle  = 'normal';
+                    this.domDynamicText.style.fontStyle  = 'normal';
+                }
+            });
+
+        /**
+         * Text Format Underline
+         */
+            this.domTextFormatUnderline.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                    this.domMyText.style.textDecoration = event.target.value;
+                    this.domDynamicText.style.textDecoration   = event.target.value;
+                } else {
+                    this.domMyText.style.textDecoration = 'none';
+                    this.domDynamicText.style.textDecoration = 'none';
+                }
+            });
+
+        /**
+         * Font Color
+         */
+            this.domTextFormatColor.addEventListener('change', (event) => {
+                // console.log('color:', event.target.value);
+                // this.domMyText.style.color = event.target.value;
+                this.domDynamicText.style.color = event.target.value;
+            });
+
+
         }
 
         _saveImg(how){

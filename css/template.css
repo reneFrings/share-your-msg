@@ -2,6 +2,43 @@
  * Fonts
  */
 
+    /* Material Icons */
+    @font-face {
+        font-family: 'Material Icons';
+        font-style: normal;
+        font-weight: 400;
+        src: url('../fonts/MaterialIcons-Regular.eot'); /* For IE6-8 */
+        src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url('../fonts/MaterialIcons-Regular.woff2') format('woff2'),
+        url('../fonts/MaterialIcons-Regular.woff') format('woff'),
+        url('../fonts/MaterialIcons-Regular.ttf') format('truetype');
+    }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;  /* Preferred icon size */
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+        
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+        
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
 
     /* montserrat-100 - latin */
     @font-face {
@@ -325,6 +362,7 @@
     #myText{
         padding: 25px 25px;
         width: calc(100% - 50px);
+        text-align: center;
     }        
 
         #myText:hover,
@@ -352,11 +390,13 @@
         }
 
     #dynamicText{
+        width: 100%;
         z-index: 10;
         grid-column: 1/2;
         grid-row: 2/3;
         margin: 0px 0px 25px 0px;
-        max-width: 80%;
+        padding: 0px 20px;
+        box-sizing: border-box;
         text-align: center;
         line-height: 1.2em;
         overflow: hidden;        
@@ -403,10 +443,19 @@
             background: rgb(var(--third-color));
         }
 
+    /* Screenshot */
+        
         canvas{
             /* background-color: aqua;
             border: solid 1px aqua; */
             margin: 0px;
             padding: 0px;
             box-sizing: border-box;
+        }
+
+    /* Text formatieren */
+
+        input[type=checkbox] {
+            display:none;
+            visibility: hidden;
         }

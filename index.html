@@ -25,6 +25,29 @@
 <body>
     <main id="pictureText">
         <h1>Grußkarten über dein Instagram Profil verschicken</h1>
+        <select name="fonts" id="fonts">
+            <option value="arial" selected>Arial</option>
+            <option value="times">Times</option>
+            <option value="courier">Courier</option>
+        </select>
+        <div id="textAlign">
+            <button value="left" class="material-icons">format_align_left</button>
+            <button value="center" class="material-icons">format_align_center</button>
+            <button value="right" class="material-icons">format_align_right</button>
+        </div>
+        <div id="textFormat">
+            <input type="checkbox" value="bold" name="bold" id="bold">
+            <label for="bold" class="material-icons">format_bold</label>
+            <input type="checkbox" value="italic" name="italic" id="italic">
+            <label for="italic" class="material-icons">format_italic</label>
+            <input type="checkbox" value="underline" name="underline" id="underline">
+            <label for="underline" class="material-icons">format_underline</label>
+        </div>
+        <div id="textColor">
+            <!-- <label for="fontColor" class="material-icons">format_color_text</label> -->
+            <input type="color" id="fontColor" name="fontColor" value="#e66465">
+        </div>
+
         <input type="text" name="" id="myText" placeholder="Dein Text">
         <picture></picture>
         <div id="selectedImg">

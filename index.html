@@ -25,31 +25,47 @@
 <body>
     <main id="pictureText">
         <h1>Grußkarten über dein Instagram Profil verschicken</h1>
-        <select name="fonts" id="fonts">
-            <option value="arial" selected>Arial</option>
-            <option value="times">Times</option>
-            <option value="courier">Courier</option>
-        </select>
-        <div id="textAlign">
-            <button value="left" class="material-icons">format_align_left</button>
-            <button value="center" class="material-icons">format_align_center</button>
-            <button value="right" class="material-icons">format_align_right</button>
-        </div>
-        <div id="textFormat">
-            <input type="checkbox" value="bold" name="bold" id="bold">
-            <label for="bold" class="material-icons">format_bold</label>
-            <input type="checkbox" value="italic" name="italic" id="italic">
-            <label for="italic" class="material-icons">format_italic</label>
-            <input type="checkbox" value="underline" name="underline" id="underline">
-            <label for="underline" class="material-icons">format_underline</label>
-        </div>
-        <div id="textColor">
-            <!-- <label for="fontColor" class="material-icons">format_color_text</label> -->
-            <input type="color" id="fontColor" name="fontColor" value="#e66465">
-        </div>
-
         <input type="text" name="" id="myText" placeholder="Dein Text">
+        <!-- <textarea name="w3review" id="myText" rows="4" cols="50">Hier kannst du deinen Text eingeben!</textarea> -->
         <picture></picture>
+        <section id="textEditor">
+            <select name="fonts" id="fonts">
+                <option value="arial" selected>Arial</option>
+                <option value="times">Times</option>
+                <option value="courier">Courier</option>
+            </select>
+            <div id="textColor">
+                <input type="color" id="fontColor" name="fontColor" value="#000">
+            </div>
+            <div id="fontSize">
+                <button class="material-icons" id="fontsizePlus">add</button>
+                <button class="material-icons" id="fontsizeMinus">remove</button>
+            </div>
+            <div id="textFormat">
+                <input type="checkbox" value="bold" name="bold" id="bold">
+                <label for="bold" class="material-icons">format_bold</label>
+                <input type="checkbox" value="italic" name="italic" id="italic">
+                <label for="italic" class="material-icons">format_italic</label>
+                <input type="checkbox" value="underline" name="underline" id="underline">
+                <label for="underline" class="material-icons">format_underline</label>
+            </div>
+            <div id="textAlign">
+                <input type="radio" value="left" name="textAlign" id="textalignLeft">
+                <label for="textalignLeft" class="material-icons">format_align_left</label>
+                <input type="radio" value="center" name="textAlign" id="textalignCenter" checked>
+                <label for="textalignCenter" class="material-icons">format_align_center</label>
+                <input type="radio" value="right" name="textAlign" id="textalignRight">
+                <label for="textalignRight" class="material-icons">format_align_right</label>
+            </div>
+            <div id="textValign">
+                <input type="radio" value="start" name="textValign" id="textvalignTop">
+                <label for="textvalignTop" class="material-icons">vertical_align_top</label>
+                <input type="radio" value="center" name="textValign" id="textvalignCenter">
+                <label for="textvalignCenter" class="material-icons">vertical_align_center</label>
+                <input type="radio" value="end" name="textValign" id="textvalignEnd" checked>
+                <label for="textvalignEnd" class="material-icons">vertical_align_bottom</label>
+            </div>
+        </section>
         <div id="selectedImg">
             <!-- <span id="dynamicText" class="fade">pppppppppppppppppppppppppppppppppppppppppppppppppppppppppp pppppppppppppppppppppppppppppppppppp ppppppppppppppppppppppppppppppppppppppp ppppppppppppppppppppppppppppppppppppp ppppppppppppppppppppppppp</span> -->
             <span id="dynamicText">Dein Text</span>

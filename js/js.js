@@ -23,12 +23,22 @@ class SelectImage{
         this.domBtnSave = document.querySelector('#btnSave');
         this.domFonts = document.querySelector('#fonts');
         this.domTextalign = document.querySelector('#textAlign');
-        this.domTextFormat = document.querySelector('#textFormat');
+        this.domTextAlignLeft = document.querySelector('#textalignLeft');
+        this.domTextAlignCenter = document.querySelector('#textalignCenter');
+        this.domTextAlignRight = document.querySelector('#textalignRight');
 
+        this.domTextValignTop = document.querySelector('#textvalignTop');
+        this.domTextValignCenter = document.querySelector('#textvalignCenter');
+        this.domTextValignEnd = document.querySelector('#textvalignEnd');
+
+        this.domTextFormat = document.querySelector('#textFormat');
         this.domTextFormatBold = document.querySelector('#textFormat > input[name="bold"]');
         this.domTextFormatItalic = document.querySelector('#textFormat > input[name="italic"]');
         this.domTextFormatUnderline = document.querySelector('#textFormat > input[name="underline"]');
         this.domTextFormatColor = document.querySelector('#fontColor');
+        this.domFontssizePlus = document.querySelector('#fontsizePlus');
+        this.domFontssizeMinus = document.querySelector('#fontsizeMinus');
+
 
         /**
          * Wird später evtl. benötigt
@@ -197,14 +207,31 @@ class SelectImage{
         _eventListener(){
 
         /**
-         * Klicks im Body
+         * Klick im Body
          */
             this.domBody.addEventListener('click', (event) => {
 
-                if (event.target === this.domBtnSave) {
-                    console.log('domBtnSave');
-                    this._saveImg('save');
+                console.log("addEventListener: click");
+
+                switch(event.target.id){
+                    /* Wenn die ID des geänderten Elements = ... ist */
+                    /* Save Button ruft Screenshot Funktion auf */
+                    case 'btnSave':
+                        /* werden entsprechene Werte festgelegt */
+                        this._saveImg('save');
+                        break;
+                    case 'fontsizePlus':
+                        this._setFontsize(+1);
+                        break;
+                    case 'fontsizeMinus':
+                        this._setFontsize(-1);
+                        break;
+        
+                    default:
+                        console.log("Click default " + event.target.id + ".");
+
                 }
+
 
             /**
              * Wird später evtl. benötigt
@@ -223,73 +250,131 @@ class SelectImage{
             });        
 
         /**
-         * Font Select
+         * Change im Body
          */
-            this.domFonts.addEventListener('change', (event) => {
-                console.log('Font:', event.target.value);
-                this.domMyText.style.fontFamily = event.target.value;
-                this.domDynamicText.style.fontFamily = event.target.value;
-            });
+            this.domBody.addEventListener('change', (event) => {
 
-        /**
-         * Text Align
-         */
-            this.domTextalign.addEventListener('click', (event) => {
-                console.log('textAlign:', event.target.value);
-                this.domMyText.style.textAlign = event.target.value;
-                this.domDynamicText.style.textAlign = event.target.value;
-            });
+                console.log("addEventListener: change");
 
-        /**
-         * Text Format Bold
-         */
-            this.domTextFormatBold.addEventListener('change', (event) => {
-                if (event.target.checked) {
-                    this.domMyText.style.fontWeight = event.target.value;
-                    this.domDynamicText.style.fontWeight = event.target.value;
-                  } else {
-                    this.domMyText.style.fontWeight = 'normal';
-                    this.domDynamicText.style.fontWeight = 'normal';
+                // CSS Property - Relevant für _setStyle() 
+                let prop = '';
+
+                // Relevant für _setStyle()
+                let type = '';
+
+                // Relevant für _setStyle()
+                let elem = '';
+
+                switch(event.target.id){
+                    /* Wenn die ID des geänderten Elements = ... ist */
+                    case 'textalignLeft':
+                    case 'textalignCenter':
+                    case 'textalignRight':
+                        /* werden entsprechene Werte festgelegt */
+                        prop = 'textAlign';
+                        type = 'check';
+                        elem = 'text';
+                        break;
+                    case 'bold':
+                        prop = 'fontWeight';
+                        type = 'check';
+                        elem = 'text';
+                        break;
+                    case 'italic':
+                        prop = 'fontStyle';
+                        type = 'check';
+                        elem = 'text';
+                        break;
+                    case 'underline':
+                        prop = 'textDecoration';
+                        type = 'check';
+                        elem = 'text';
+                        break;
+                    case 'fontColor':
+                        prop = 'color';
+                        type = 'style';
+                        elem = 'text';
+                        break;
+                    case 'fonts':
+                        prop = 'fontFamily';
+                        type = 'style';
+                        elem = 'text';
+                        break;
+                    case 'textvalignTop':
+                    case 'textvalignCenter':
+                    case 'textvalignEnd':
+                        prop = 'alignItems';
+                        type = 'check';
+                        elem = 'selectedImg';
+                        break;
+    
+        
+                    default:
+                        console.log("Change default " + event.target.id + ".");
                 }
-            });
-
-        /**
-         * Text Format Italic
-         */
-            this.domTextFormatItalic.addEventListener('change', (event) => {
-                if (event.target.checked) {
-                    this.domMyText.style.fontStyle = event.target.value;
-                    this.domDynamicText.style.fontStyle = event.target.value;
-                } else {
-                    this.domMyText.style.fontStyle  = 'normal';
-                    this.domDynamicText.style.fontStyle  = 'normal';
+                
+                /* Funktion aufrufen, um CSS Eigenchaft des geänderten Elements zu setzen */
+                if(elem == 'text'){
+                    this._setStyle(type,event.target,prop,this.domMyText);
+                    this._setStyle(type,event.target,prop,this.domDynamicText);
                 }
-            });
 
-        /**
-         * Text Format Underline
-         */
-            this.domTextFormatUnderline.addEventListener('change', (event) => {
-                if (event.target.checked) {
-                    this.domMyText.style.textDecoration = event.target.value;
-                    this.domDynamicText.style.textDecoration   = event.target.value;
-                } else {
-                    this.domMyText.style.textDecoration = 'none';
-                    this.domDynamicText.style.textDecoration = 'none';
+                if(elem == 'selectedImg'){
+                    this._setStyle(type,event.target,prop,this.domSelectedImg);
                 }
-            });
 
-        /**
-         * Font Color
-         */
-            this.domTextFormatColor.addEventListener('change', (event) => {
-                // console.log('color:', event.target.value);
-                // this.domMyText.style.color = event.target.value;
-                this.domDynamicText.style.color = event.target.value;
-            });
 
+            });
 
         }
+/* Ende _eventListener() */
+
+        /**
+         * CSS Eigenschaft setzen 
+         */
+
+            _setStyle(type,target,prop,elem){
+
+                // console.log('target.checked:', target.checked);
+                // console.log('target.value:', target.value);
+                // console.log('prop:', prop);
+                // console.log('elem:', elem);
+
+                /* Checkboxen, Radiobutton*/
+                if(type == 'check'){
+                    if (target.checked) {
+                        // console.log('checked:', elem);
+                        elem.style[prop] = target.value;
+                    } else {
+                        // console.log('not checked:', elem);
+                        elem.style[prop] = 'normal';
+                    }
+                }
+
+                /* Sonstige Elemente */
+                if(type == 'style'){
+                    elem.style[prop] = target.value;
+                }
+
+            }
+
+
+        /**
+         * Fontsize 
+         */
+            _setFontsize(size){
+
+                // Aktuelle Fontsize speichern
+                let getFontsize = window.getComputedStyle(this.domDynamicText,null).getPropertyValue('font-size');
+
+                // Fontsize als Int
+                getFontsize = parseFloat(getFontsize);
+                // console.log('getFontsize:', getFontsize);
+
+                // Fontsize Wert mit Parameter setzen
+                this.domDynamicText.style.fontSize = (getFontsize + size) + 'px';
+            }
+
 
         _saveImg(how){
             

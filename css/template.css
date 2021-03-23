@@ -411,6 +411,12 @@
         /* height: 20%; */
     }
 
+        #dynamicText:hover,
+        #dynamicText:active,
+        #dynamicText:focus{ 
+            outline: unset;
+        }
+
 /* Formular */
 
     input[type=radio],

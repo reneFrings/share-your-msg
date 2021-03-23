@@ -16,7 +16,7 @@ class SelectImage{
      */
         this.domBody = document.querySelector('body');
         this.domDynamicText = document.querySelector('#dynamicText');
-        this.domMyText = document.querySelector('#myText');
+        // this.domMyText = document.querySelector('#myText');
         this.domPicture = document.querySelector('#pictureText > picture');
         this.domSelectedImg = document.querySelector('#pictureText > #selectedImg');
         this.domExistImg = document.querySelector('#pictureText > #selectedImg > img');
@@ -61,7 +61,7 @@ class SelectImage{
         this._selectedImg(this.domPicture); 
 
         // Text aus #myText in #dynamicText einfügen
-        this._write(); 
+        // this._write(); 
 
         // Fängt Klick auf Save Button ab
         this._eventListener();
@@ -176,28 +176,28 @@ class SelectImage{
      * Text aus #myText in #dynamicText einfügen
      */
 
-        _write(){
+        // _write(){
 
-            // #selectedImg selektieren
+        //     // #selectedImg selektieren
 
-            console.log('domDynamicText:', this.domDynamicText);
-            // let getText = '';
+        //     console.log('domDynamicText:', this.domDynamicText);
+        //     // let getText = '';
 
 
-            // Eventlistener: Wenn auf ein Bild geklickt wird
-            this.domMyText.addEventListener('keyup', (e) => { 
+        //     // Eventlistener: Wenn auf ein Bild geklickt wird
+        //     this.domMyText.addEventListener('keyup', (e) => { 
                 
-                // console.log('keydown e:', e.key);
-                // getText = getText + e.key;
-                let getText = this.domMyText.value;
+        //         // console.log('keydown e:', e.key);
+        //         // getText = getText + e.key;
+        //         let getText = this.domMyText.value;
 
-                console.log('getText:', getText);
+        //         console.log('getText:', getText);
 
-                this.domDynamicText.innerHTML = getText;
+        //         this.domDynamicText.innerHTML = getText;
 
-            });
+        //     });
 
-        }
+        // }
 
 
     /**
@@ -315,7 +315,7 @@ class SelectImage{
                 
                 /* Funktion aufrufen, um CSS Eigenchaft des geänderten Elements zu setzen */
                 if(elem == 'text'){
-                    this._setStyle(type,event.target,prop,this.domMyText);
+                    // this._setStyle(type,event.target,prop,this.domMyText);
                     this._setStyle(type,event.target,prop,this.domDynamicText);
                 }
 

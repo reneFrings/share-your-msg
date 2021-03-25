@@ -255,6 +255,11 @@ class SelectImage{
                     type = 'style';
                     elem = 'text';
                     break;
+                case 'textShadow':
+                    prop = 'textShadow';
+                    type = 'check';
+                    elem = 'text';
+                    break;
                 case 'textvalignTop':
                 case 'textvalignCenter':
                 case 'textvalignEnd':
@@ -302,7 +307,19 @@ class SelectImage{
                         elem.style[prop] = target.value;
                     } else {
                         // console.log('not checked:', elem);
-                        elem.style[prop] = 'normal';
+                        switch(prop){
+                            case 'fontWeight':
+                            case 'fontStyle':
+                            case 'textDecoration':
+                                elem.style[prop] = 'normal';
+                                break;
+                            case 'textShadow':
+                                elem.style[prop] = 'none';
+                                break;
+                            default:
+                                elem.style[prop] = 'unset';
+                                break;
+                        }
                     }
                 }
 

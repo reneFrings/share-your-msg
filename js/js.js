@@ -20,7 +20,7 @@ class SelectImage{
 
         /* GUI */ 
         this.domDynamicText = document.querySelector('#dynamicText');
-        this.domPicture = document.querySelector('#pictureText > picture');
+        this.domPicture = document.querySelector('#gallery');
         this.domSelectedImg = document.querySelector('#pictureText > #selectedImg');
         this.domExistImg = document.querySelector('#pictureText > #selectedImg > img');
         this.domBtnSave = document.querySelector('#btnSave');
@@ -366,7 +366,8 @@ class SelectImage{
                 // Konfiguration
                 windowWidth: calcWidth,
                 width: 300,
-                height: 300
+                height: 300,
+                scale: 1
                 }
                 ).then(canvas => {
                     // document.body.appendChild(canvas);

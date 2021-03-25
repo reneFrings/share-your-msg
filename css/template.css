@@ -471,7 +471,7 @@
     }
 
 /**
- * Basics
+ * UI Basics
  */
 
     html, body {
@@ -490,143 +490,65 @@
         color: var(--primary-color);
     }
 
-    h1,h2,h3,h4{
+        /* UI Container */
+        main{
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(auto-fit, 100px);
+            justify-content: center;
+            align-content: center;
+            justify-items: center;  
+            align-items: center;    
+            grid-row-gap: 25px;
+            margin: 25px 25px;
+        }           
 
-    }
+            /* Container für Bild und Text*/
+            #selectedImg{
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 100%;
+                justify-content: center;
+                align-content: center;
+                justify-items: center;  
+                align-items: end;   
+                width: 300px;
+                max-width: 300px; 
+            }        
 
-    main{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(auto-fit, 100px);
-        justify-content: center;
-        align-content: center;
-        justify-items: center;  
-        align-items: center;    
-        grid-row-gap: 25px;
-        margin: 25px 25px;
-    }    
+                #selectedImg > img{
+                    grid-column: 1/2;
+                    grid-row: 1/2
+                }
 
-    #myText{
-        padding: 25px 25px;
-        width: calc(100% - 50px);
-        text-align: center;
-    }        
+                /* Text Container */
+                #dynamicText{
+                    width: 100%;
+                    z-index: 10;
+                    grid-column: 1/2;
+                    grid-row: 1/2;
+                    margin: 25px 0px;
+                    padding: 0px 20px;
+                    box-sizing: border-box;
+                    text-align: center;
+                    line-height: 1.2em;
+                    overflow: hidden;        
+                    font-size: var(--font-size-h3);
+                }
 
-        #myText:hover,
-        #myText:focus,
-        #myText:active{
-            outline: none;
-        }
-        
-
-    #selectedImg{
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 100%;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;  
-        align-items: end;   
-        width: 300px;
-        max-width: 300px; 
-    }        
-
-        #selectedImg > img{
-            grid-column: 1/2;
-            grid-row: 1/2
-        }
-
-
-    /* #dynamicTextBox{
-        width: 100%;
-        position: absolute;
-        z-index: 9;
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    #dynamicTextMove{
-        padding: 10px;
-        cursor: move;
-        z-index: 10;
-        background-color: #2196F3;
-        color: #fff;
-    } */
-
-    #dynamicText{
-        width: 100%;
-        z-index: 10;
-        grid-column: 1/2;
-        grid-row: 1/2;
-        margin: 25px 0px;
-        padding: 0px 20px;
-        box-sizing: border-box;
-        text-align: center;
-        line-height: 1.2em;
-        overflow: hidden;        
-        font-size: var(--font-size-h3);
-        /* height: 3.5em;*/ /* exactly three lines */
-        /* height: 20%; */
-    }
-
-        #dynamicText:hover,
-        #dynamicText:active,
-        #dynamicText:focus{ 
-            outline: unset;
-        }
-
-/* Formular */
-
-    input[type=radio],
-    input[type=checkbox] {
-        display:none;
-        visibility: hidden;
-    }
-
-    #fontColor,
-    select,
-    label,
-    button{
-        display: grid!important;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr;
-        justify-content: center;
-        align-content: center;
-        justify-items: center;  
-        align-items: center;
-        width: 60px;
-        height: 60px;
-        border-radius: 5px;
-        border: none;
-        background-color: rgb(var(--secondary-color));
-        color: #fff;
-        font-size: var(--font-size-standard);
-        font-weight: bold;
-        margin: 0px 12px;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-    
-       :checked+label{
-            background-color: rgb(var(--primary-color));
-        }
-
-
-        button:hover,
-        button:focus,
-        button:active{
-            background-color: rgb(var(--primary-color));
-            outline: none;
-        }
-
+                    #dynamicText:hover,
+                    #dynamicText:active,
+                    #dynamicText:focus{ 
+                        outline: unset;
+                    }
 
 
 /**
  * Bilder die man auswählen kann
  */
-
+    
     #pictureText > picture{
-        width: 100%;
+        /* width: 100%; */
         display: grid;
         grid-template-columns: repeat(auto-fit, 1fr);
         grid-template-rows: 100%;
@@ -641,6 +563,7 @@
 
         #pictureText > picture > img{
             height: 20vh;
+            min-height: 150px;
         }
 
 
@@ -679,8 +602,54 @@
  * Text Editor
  */        
 
+    /* Formular Elemente verstecken, damit Icons über Label angezeigt werden können */
+    input[type=radio],
+    input[type=checkbox] {
+        display:none;
+        visibility: hidden;
+    }
+
+    /* Layout für Formular Elemente */
+    #fontColor,
+    select,
+    label,
+    button{
+        display: grid!important;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        justify-content: center;
+        align-content: center;
+        justify-items: center;  
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 5px;
+        border: none;
+        background-color: rgb(var(--secondary-color));
+        color: #fff;
+        font-size: var(--font-size-standard);
+        font-weight: bold;
+        margin: 0px 12px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+        /* Layout für aktive Formular Elemente */
+        :checked+label{
+            background-color: rgb(var(--primary-color));
+        }
+
+
+        button:hover,
+        button:focus,
+        button:active{
+            background-color: rgb(var(--primary-color));
+            outline: none;
+        }
+
+    /* Container für alle Texteditor Elemente */
     #textEditor{
-        width: 100%;
+        /* width: 100%; */
         display: grid;
         grid-template-columns: auto auto auto auto auto auto;
         grid-template-rows: 60px;
@@ -694,6 +663,7 @@
         padding: 0px 0px 5px 0px; /* Wegen horizontalem Scrollbalken */
     }
 
+        /* Font Auswahl Feld */
         #fonts{
             width: 200px;
             margin: 0px;
@@ -707,6 +677,7 @@
                 padding: 10px 0px;;
             }
 
+        /* Container für Texteditor Element Gruppen */
         #textColor,
         #fontSize,
         #textValign,
@@ -722,20 +693,32 @@
             grid-column-gap: 24px;
         }
 
-        #textValign,
-        #textAlign,
-        #textFormat{
-            grid-template-columns: 60px 60px 60px;
-        }
+            /* Spalten für die Element Gruppen */
+            #textValign,
+            #textAlign,
+            #textFormat{
+                grid-template-columns: 60px 60px 60px;
+            }
 
-        #textColor,
-        #fontSize{
-            grid-template-columns: 60px 60px;
-        }
+            #textColor,
+            #fontSize{
+                grid-template-columns: 60px 60px;
+            }
 
+        /* Farbfeld */
         #fontColor{
             background-color: #fff;
             border: solid 1px rgb(var(--fourth-color));
             background: none;
         }
 
+
+
+@media screen and (max-width: 1200px) {
+
+    #gallery,
+    #textEditor{
+        width: 100%;
+    }
+
+}

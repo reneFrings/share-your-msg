@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
 /**
  * Fonts
  */
@@ -19,7 +26,7 @@
             url('../fonts/MaterialIcons-Regular.ttf') format('truetype');
         }
 
-            .material-icons {
+         #pictureText .material-icons {
                 font-family: 'Material Icons';
                 font-weight: normal;
                 font-style: normal;
@@ -41,7 +48,8 @@
                 -moz-osx-font-smoothing: grayscale;
             
                 /* Support for IE. */
-                font-feature-settings: 'liga';
+                -webkit-font-feature-settings: 'liga';
+                        font-feature-settings: 'liga';
             }
 
         /* montserrat-100 - latin */
@@ -456,7 +464,7 @@
  * Variablen
  */
 
-    :root {
+    #pictureText {
         --primary-color: 40,59,66;      /* Anthrazit/Blau */
         --secondary-color: 29,108,151;  /* blau */
         --third-color: 136,184,204;     /* Hellblau */
@@ -466,20 +474,18 @@
         --h2: 28px;
         --h3: 18px;
         --h4: 14px;
-        --font-size-standard: 14px;
-        --font-size-h3: 18px;
     }
 
 /**
  * UI Basics
  */
 
-    html, body {
+    html #pictureText, body #pictureText {
         margin: 0px;
         padding: 0px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         -webkit-hyphens: auto;
-        -moz-hyphens: auto;
         -ms-hyphens: auto;
         hyphens: auto;
         overflow-wrap: unset;
@@ -491,54 +497,84 @@
     }
 
         /* UI Container */
-        main{
+        main#pictureText{
+            display: -ms-grid;
             display: grid;
+            -ms-grid-columns: 1fr;
             grid-template-columns: 1fr;
-            grid-template-rows: repeat(auto-fit, 100px);
-            justify-content: center;
-            align-content: center;
+            grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -ms-flex-line-pack: center;
+                align-content: center;
             justify-items: center;  
-            align-items: center;    
+            -webkit-box-align: center;  
+                -ms-flex-align: center;  
+                    align-items: center;    
             grid-row-gap: 25px;
             margin: 25px 25px;
         }           
 
             /* Container für Bild und Text*/
-            #selectedImg{
+            #pictureText #selectedImg{
+                display: -ms-grid;
                 display: grid;
+                -ms-grid-columns: 100%;
                 grid-template-columns: 100%;
+                -ms-grid-rows: 100%;
                 grid-template-rows: 100%;
-                justify-content: center;
-                align-content: center;
+                -webkit-box-pack: center;
+                    -ms-flex-pack: center;
+                        justify-content: center;
+                -ms-flex-line-pack: center;
+                    align-content: center;
                 justify-items: center;  
-                align-items: end;   
+                -webkit-box-align: start;  
+                    -ms-flex-align: start;  
+                        align-items: start;   
                 width: 300px;
                 max-width: 300px; 
+            }
+            #pictureText #selectedImg > *:nth-child(1){
+                -ms-grid-row: 1;
+                -ms-grid-column: 1; 
             }        
 
-                #selectedImg > img{
+                #pictureText #selectedImg > img{
+                    -ms-grid-column: 1;
+                    -ms-grid-column-span: 1;
                     grid-column: 1/2;
+                    -ms-grid-row: 1;
+                    -ms-grid-row-span: 1;
                     grid-row: 1/2
                 }
 
                 /* Text Container */
-                #dynamicText{
+                #pictureText #dynamicText{
                     width: 100%;
                     z-index: 10;
+                    -ms-grid-column: 1;
+                    -ms-grid-column-span: 1;
                     grid-column: 1/2;
+                    -ms-grid-row: 1;
+                    -ms-grid-row-span: 1;
                     grid-row: 1/2;
-                    margin: 25px 0px;
-                    padding: 0px 20px;
-                    box-sizing: border-box;
+                    /* margin: 25px 0px; */
+                    padding: 25px 20px;
+                    -webkit-box-sizing: border-box;
+                            box-sizing: border-box;
                     text-align: center;
                     line-height: 1.2em;
                     overflow: hidden;        
-                    font-size: var(--font-size-h3);
+                    font-size: var(--h2);
+                    font-family: 'Lobster Two';
+                    color: #fff;
                 }
 
-                    #dynamicText:hover,
-                    #dynamicText:active,
-                    #dynamicText:focus{ 
+                    #pictureText #dynamicText:hover,
+                    #pictureText #dynamicText:active,
+                    #pictureText #dynamicText:focus{ 
                         outline: unset;
                     }
 
@@ -549,27 +585,36 @@
     
     #pictureText > picture{
         /* width: 100%; */
+        display: -ms-grid;
         display: grid;
         grid-template-columns: repeat(auto-fit, 1fr);
+        -ms-grid-rows: 100%;
         grid-template-rows: 100%;
-        justify-content: start;
-        align-content: center;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: start;
+        -ms-flex-line-pack: center;
+            align-content: center;
         justify-items: start;
-        align-items: baseline;
+        -webkit-box-align: baseline;
+            -ms-flex-align: baseline;
+                align-items: baseline;
         overflow-x: auto;
         grid-auto-flow: column;
         padding: 0px 0px 5px 0px; /* Wegen horizontalem Scrollbalken */
+        grid-column-gap: 1px;
     }
 
         #pictureText > picture > img{
             height: 20vh;
             min-height: 150px;
+            max-width: unset;
         }
 
 
     /* Scrollbar */
 
-        #textEditor::-webkit-scrollbar,
+        #pictureText #textEditor::-webkit-scrollbar,
         #pictureText > picture::-webkit-scrollbar {
             width: 10px;
             height: 2px;
@@ -577,12 +622,12 @@
             padding: 5px 0px 0px 0px;
         }
 
-        #textEditor::-webkit-scrollbar-thumb,
+        #pictureText #textEditor::-webkit-scrollbar-thumb,
         #pictureText > picture::-webkit-scrollbar-thumb {
             background: rgb(var(--secondary-color));
         }
 
-        #textEditor::-webkit-scrollbar-track,
+        #pictureText #textEditor::-webkit-scrollbar-track,
         #pictureText > picture::-webkit-scrollbar-track {
             background: rgb(var(--third-color));
         }
@@ -590,12 +635,13 @@
 /**
  * Screenshot
  */        
-        canvas{
+        #pictureText canvas{
             /* background-color: aqua;
             border: solid 1px aqua; */
             margin: 0px;
             padding: 0px;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
         }
 
 /**
@@ -603,110 +649,179 @@
  */        
 
     /* Formular Elemente verstecken, damit Icons über Label angezeigt werden können */
-    input[type=radio],
-    input[type=checkbox] {
+    #pictureText input[type=radio],
+    #pictureText input[type=checkbox] {
         display:none;
         visibility: hidden;
     }
 
     /* Layout für Formular Elemente */
-    #fontColor,
-    select,
-    label,
-    button{
+    #pictureText #fontColor,
+    #pictureText select,
+    #pictureText label,
+    #pictureText button{
+        display: -ms-grid!important;
         display: grid!important;
+        -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
+        -ms-grid-rows: 1fr;
         grid-template-rows: 1fr;
-        justify-content: center;
-        align-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -ms-flex-line-pack: center;
+            align-content: center;
         justify-items: center;  
-        align-items: center;
+        -webkit-box-align: center;  
+            -ms-flex-align: center;  
+                align-items: center;
         width: 60px;
         height: 60px;
         border-radius: 5px;
         border: none;
         background-color: rgb(var(--secondary-color));
         color: #fff;
-        font-size: var(--font-size-standard);
+        font-size: var(--h4);
         font-weight: bold;
         margin: 0px 12px;
         padding: 15px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+    }
+    #pictureText #fontColor > *:nth-child(1), 
+    #pictureText select > *:nth-child(1), 
+    #pictureText label > *:nth-child(1), 
+    #pictureText button > *:nth-child(1){
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
     }
 
         /* Layout für aktive Formular Elemente */
-        :checked+label{
+        #pictureText :checked+label{
             background-color: rgb(var(--primary-color));
         }
 
 
-        button:hover,
-        button:focus,
-        button:active{
+        #pictureText button:hover,
+        #pictureText button:focus,
+        #pictureText button:active{
             background-color: rgb(var(--primary-color));
+        }
+
+        #pictureText button:hover,
+        #pictureText button:focus,
+        #pictureText button:active,
+        #pictureText select:hover,
+        #pictureText select:focus,
+        #pictureText select:active,
+        #pictureText input:hover,
+        #pictureText input:focus,
+        #pictureText input:active{        
             outline: none;
         }
 
+
     /* Container für alle Texteditor Elemente */
-    #textEditor{
+    #pictureText #textEditor{
         /* width: 100%; */
+        display: -ms-grid;
         display: grid;
+        -ms-grid-columns: auto 36px auto 36px auto 36px auto 36px auto 36px auto;
         grid-template-columns: auto auto auto auto auto auto;
+        -ms-grid-rows: 60px;
         grid-template-rows: 60px;
-        justify-content: start;
-        align-content: center;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: start;
+        -ms-flex-line-pack: center;
+            align-content: center;
         justify-items: start;
-        align-items: center;    
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;    
         grid-column-gap: 36px;
         overflow-x: auto;
         overflow-y: hidden;
         padding: 0px 0px 5px 0px; /* Wegen horizontalem Scrollbalken */
     }
+    #pictureText #textEditor > *:nth-child(1){
+            -ms-grid-row: 1;
+            -ms-grid-column: 1;
+    }
+    #pictureText #textEditor > *:nth-child(2){
+            -ms-grid-row: 1;
+            -ms-grid-column: 3;
+    }
+    #pictureText #textEditor > *:nth-child(3){
+            -ms-grid-row: 1;
+            -ms-grid-column: 5;
+    }
+    #pictureText #textEditor > *:nth-child(4){
+            -ms-grid-row: 1;
+            -ms-grid-column: 7;
+    }
+    #pictureText #textEditor > *:nth-child(5){
+            -ms-grid-row: 1;
+            -ms-grid-column: 9;
+    }
+    #pictureText #textEditor > *:nth-child(6){
+            -ms-grid-row: 1;
+            -ms-grid-column: 11;
+    }
 
         /* Font Auswahl Feld */
-        #fonts{
+        #pictureText #fonts{
             width: 200px;
             margin: 0px;
             background-color: #fff;
             border: solid 1px rgb(var(--fourth-color));
             color: rgb(var(--primary-color));
-            font-size: var(--font-size-h3);
+            font-size: var(--h3);
         }
 
-            #fonts > option{
+            #pictureText #fonts > option{
                 padding: 10px 0px;;
             }
 
         /* Container für Texteditor Element Gruppen */
-        #textColor,
-        #fontSize,
-        #textValign,
-        #textAlign,
-        #textFormat{
+        #pictureText #textColor,
+        #pictureText #fontSize,
+        #pictureText #textValign,
+        #pictureText #textAlign,
+        #pictureText #textFormat{
             width: 100%;
+            display: -ms-grid;
             display: grid;
+            -ms-grid-rows: 60px;
             grid-template-rows: 60px;
-            justify-content: center;
-            align-content: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -ms-flex-line-pack: center;
+                align-content: center;
             justify-items: center;
-            align-items: center;    
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;    
             grid-column-gap: 24px;
         }
 
             /* Spalten für die Element Gruppen */
-            #textValign,
-            #textAlign,
-            #textFormat{
+            #pictureText #textValign,
+            #pictureText #textAlign,
+            #pictureText #textFormat{
+                -ms-grid-columns: 60px 60px 60px;
                 grid-template-columns: 60px 60px 60px;
             }
 
-            #textColor,
-            #fontSize{
+            #pictureText #textColor,
+            #pictureText #fontSize{
+                -ms-grid-columns: 60px 60px;
                 grid-template-columns: 60px 60px;
             }
 
         /* Farbfeld */
-        #fontColor{
+        #pictureText #fontColor{
             background-color: #fff;
             border: solid 1px rgb(var(--fourth-color));
             background: none;
@@ -716,8 +831,8 @@
 
 @media screen and (max-width: 1200px) {
 
-    #gallery,
-    #textEditor{
+    #pictureText #gallery,
+    #pictureText #textEditor{
         width: 100%;
     }
 

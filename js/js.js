@@ -360,6 +360,11 @@ class SelectImage{
                 
                 // Innere Fensterbreite - Scrollbarbreite
                 let calcWidth = window.innerWidth - scrollbarWidth;
+
+                // Verhindert, dass Buchstaben versetzt werden
+                this.domSelectedImg.style.fontFeatureSettings = '"liga" 0';
+                // this.domDynamicText.style.lineHeight = '50px';
+
             
             this.html2canvas(this.domSelectedImg,
                 {
@@ -367,7 +372,8 @@ class SelectImage{
                 windowWidth: calcWidth,
                 width: 300,
                 height: 300,
-                scale: 1
+                scale: 4,
+                letterRendering:true
                 }
                 ).then(canvas => {
                     // document.body.appendChild(canvas);
@@ -377,7 +383,8 @@ class SelectImage{
                         let link = document.createElement('a');
                         link.href = canvas.toDataURL('image/jpeg');
                         link.download = 'myimg.jpeg';
-                        link.click();              
+                        link.click();  
+                        // document.body.appendChild(canvas);            
                     }
 
                 });
@@ -407,7 +414,7 @@ class SelectImage{
      * Kindelement nach letztem Kindelement einfügen
      */
 
-        _appendElement(domElement,newElement){           
+        _appendElement(domElement,newElement){         
             domElement.appendChild(newElement);
         }
 
@@ -431,14 +438,15 @@ class SelectImage{
 var images = new SelectImage(
     {
         images: [
-            '/img/bild-1.jpg',
-            '/img/bild-2.jpg',
-            '/img/bild-3.jpg',
-            '/img/bild-4.jpg',
-            '/img/bild-5.jpg',
-            '/img/bild-6.jpg',
-            '/img/bild-7.jpg'
-        ],
+            '../img/bild-1.jpg',
+            '../img/bild-2.jpg',
+            '../img/bild-3.jpg',
+            '../img/bild-4.jpg',
+            '../img/bild-5.jpg',
+            '../img/bild-6.jpg',
+            '../img/bild-7.jpg'
+        ],        
+        
         fonts: [
             'Courgette',
             'Yesteryear',

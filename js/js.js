@@ -434,9 +434,9 @@ class SelectImage{
 
 }
 
-// var images = new SelectImage(['/img/bild-1.jpg','/img/bild-2.jpg','/img/bild-3.jpg','/img/bild-4.jpg','/img/bild-5.jpg','/img/bild-6.jpg','/img/bild-7.jpg']);
 var images = new SelectImage(
     {
+        // Bilder zur Auswahl
         images: [
             '../img/bild-1.jpg',
             '../img/bild-2.jpg',
@@ -446,7 +446,7 @@ var images = new SelectImage(
             '../img/bild-6.jpg',
             '../img/bild-7.jpg'
         ],        
-        
+        // Schrifttypen für Texteditor
         fonts: [
             'Courgette',
             'Yesteryear',
@@ -463,7 +463,4 @@ var images = new SelectImage(
         ]
     }        
 );
-// console.log('SelectImage:', images);
 
-// var images = new SelectImage();
-// images.imagesToDOM();

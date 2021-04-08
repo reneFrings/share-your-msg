@@ -11,7 +11,7 @@ more useful content to generate traffic, new backlinks and shares.
 2. Upload new fonts in /fonts/
 3. Include the new fonts in /css/template.css
 4. Create in /js/js.js a new object and add the images for the gallery and the fonts:
-
+```
 var images = new SelectImage(
     {
         // Image gallery
@@ -28,6 +28,7 @@ var images = new SelectImage(
         ]
     }        
 );
+```
 
 # Tested for
 ## Windows 10 Desktop

@@ -32,9 +32,9 @@ var images = new SelectImage(
 
 # Tested for
 ## Windows 10 Desktop
- *Chrome
- *Firefox
- *MS Edge
+ * Chrome
+ * Firefox
+ * MS Edge
 
 ## Android mobile
  * Chrome

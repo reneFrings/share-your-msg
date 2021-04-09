@@ -40,3 +40,6 @@ var images = new SelectImage(
  * Chrome
  * Firefox
  * Samsung Internet
+
+# 3rd party licences
+This application use [google fonts](https://fonts.google.com/) and [html2canvas](https://github.com/niklasvh/html2canvas). Please note the licenses.
